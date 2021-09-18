@@ -30,16 +30,24 @@ class PokemonPage extends React.Component {
     })
   }
 
+  handleSearchChange = e => {
+    this.setState({ search: e.target.value })
+  }
+
   render() {
+    const desiredPokemon = this.state.pokemonCollection.filter(pokemon =>
+      pokemon.name.includes(this.state.search)
+    )
+
     return (
       <Container>
         <h1>Pokemon Searcher</h1>
         <br />
         <PokemonForm />
         <br />
-        <Search />
+        <Search onChange={this.handleSearchChange}/>
         <br />
-        <PokemonCollection pokemon={this.state.pokemonCollection} toggleImage={this.toggleImage} />
+        <PokemonCollection pokemon={desiredPokemon} toggleImage={this.toggleImage} />
       </Container>
     )
   }
