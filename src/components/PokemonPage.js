@@ -34,6 +34,10 @@ class PokemonPage extends React.Component {
     this.setState({ search: e.target.value })
   }
 
+  addPokemon = pokemon => {
+    this.setState({ pokemonCollection: [...this.state.pokemonCollection, pokemon] })
+  }
+
   render() {
     const desiredPokemon = this.state.pokemonCollection.filter(pokemon =>
       pokemon.name.includes(this.state.search)
@@ -43,7 +47,7 @@ class PokemonPage extends React.Component {
       <Container>
         <h1>Pokemon Searcher</h1>
         <br />
-        <PokemonForm />
+        <PokemonForm addPokemon={this.addPokemon} />
         <br />
         <Search onChange={this.handleSearchChange}/>
         <br />
